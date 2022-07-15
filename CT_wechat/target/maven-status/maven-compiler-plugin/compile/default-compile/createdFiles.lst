@@ -1,0 +1,8 @@
+com\example\ct_wechat\CtWechatApplication.class
+com\example\ct_wechat\msg\ImageMsg.class
+com\example\ct_wechat\service\WxService.class
+com\example\ct_wechat\controller\WxController.class
+com\example\ct_wechat\msg\BaseMessage.class
+com\example\ct_wechat\msg\Image.class
+com\example\ct_wechat\utils\Utils.class
+com\example\ct_wechat\msg\TextMsg.class
