@@ -1,5 +1,6 @@
 package com.example.ct_wechat.controller;
 
+
 import com.example.ct_wechat.service.WxService;
 import com.example.ct_wechat.utils.Utils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 
 @RestController
-public class WxController {
+public class TestweixinController {
 
     @RequestMapping(value="/testWeixin",method = {RequestMethod.POST,RequestMethod.GET})
     public void testWeixin(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -32,19 +33,11 @@ public class WxController {
             //out.print(echostr);
 
             //查看用户从公众号发送过来的信息
-            Map<String, String> requestMap=WxService.parseRequest(request.getInputStream());
-            System.out.println(requestMap);
+            Map<String, String> requestMap= WxService.parseRequest(request.getInputStream());
 
-            //返回 收到了！！！给用户
-            String respXml="<xml>\n" +
-                    "<ToUserName><![CDATA["+requestMap.get("FromUserName")+"]]></ToUserName>\n" +
-                    "<FromUserName><![CDATA["+requestMap.get("ToUserName")+"]]></FromUserName>\n" +
-                    "<CreateTime>12345678</CreateTime>\n" +
-                    "<MsgType><![CDATA[text]]></MsgType>\n" +
-                    "<Content><![CDATA["+"收到了！！！"+"]]></Content>\n" +
-                    "</xml>\n";
-
-            out.print(respXml);
+            //返回信息给用户
+            String resXml = WxService.getResponse(requestMap);
+            out.print(resXml);
         }else{
             //校验失败
             out.print("---请到公众号执行相应操作---");
